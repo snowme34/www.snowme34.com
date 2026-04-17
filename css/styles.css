@@ -1,0 +1,312 @@
+/* ===== CSS Variables for Easy Customization ===== */
+/* Note: Background, card, and color customization is in index.html <style> tag */
+:root {
+    /* Card styling (can be overridden in HTML) */
+    --card-border: rgba(255, 255, 255, 0.3);
+    --card-shadow: rgba(0, 0, 0, 0.1);
+
+    /* Sizing */
+    --profile-size: 120px;
+    --card-padding: 3rem;
+    --card-max-width: max-content;
+    --card-min-width: 400px;
+    --button-padding: 0.75rem 2rem;
+    --icon-size: 24px;
+
+    /* Spacing */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-size-name: 2rem;
+    --font-size-bio: 1rem;
+    --font-size-button: 0.95rem;
+
+    /* Transitions */
+    --transition-speed: 0.3s;
+}
+
+/* ===== Reset & Base Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: var(--bg-position, center);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Background overlay */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-overlay);
+    z-index: 0;
+}
+
+/* ===== Particle Canvas ===== */
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ===== Main Card ===== */
+.card {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--card-padding);
+    max-width: var(--card-max-width);
+    min-width: var(--card-min-width);
+    background: var(--card-bg);
+    backdrop-filter: blur(var(--card-blur));
+    -webkit-backdrop-filter: blur(var(--card-blur));
+    border: 1px solid var(--card-border);
+    box-shadow: 0 8px 32px var(--card-shadow);
+    border-radius: 16px;
+    margin: 2rem;
+}
+
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(20px)) {
+    .card {
+        background: rgba(255, 255, 255, 0.85);
+    }
+}
+
+/* ===== Profile Photo ===== */
+.profile-photo {
+    width: var(--profile-size);
+    height: var(--profile-size);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: var(--spacing-lg);
+    transition: transform var(--transition-speed) ease;
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+}
+
+/* ===== Name & Bio ===== */
+.name {
+    font-size: var(--font-size-name);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+.bio {
+    font-size: var(--font-size-bio);
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    opacity: 0.85;
+    max-width: 90%;
+}
+
+/* ===== Navigation Buttons ===== */
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.nav-button {
+    padding: var(--button-padding);
+    font-size: var(--font-size-button);
+    color: var(--primary-color);
+    text-decoration: none;
+    background: var(--button-bg, rgba(255, 255, 255, 0.2));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    transition: all var(--transition-speed) ease;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    min-width: 120px;
+    text-align: center;
+}
+
+.nav-button:hover {
+    background: var(--button-hover, rgba(255, 255, 255, 0.35));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: var(--link-hover, #666);
+}
+
+.nav-button:active {
+    transform: translateY(0);
+}
+
+/* ===== Social Icons ===== */
+.social-icons {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--primary-color);
+    text-decoration: none;
+    background: var(--button-bg, rgba(255, 255, 255, 0.2));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transition: all var(--transition-speed) ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.social-link:hover {
+    background: var(--button-hover, rgba(255, 255, 255, 0.35));
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: var(--link-hover, #666);
+}
+
+.social-link:active {
+    transform: translateY(0) scale(1);
+}
+
+.social-link svg {
+    width: var(--icon-size);
+    height: var(--icon-size);
+}
+
+/* ===== Responsive Design ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    :root {
+        --card-padding: 2.5rem;
+        --font-size-name: 1.75rem;
+        --profile-size: 110px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    :root {
+        --card-padding: 2rem;
+        --card-min-width: 85vw;
+        --font-size-name: 1.5rem;
+        --font-size-bio: 0.95rem;
+        --font-size-button: 0.9rem;
+        --profile-size: 100px;
+        --button-padding: 0.65rem 1.5rem;
+        --spacing-xl: 1.5rem;
+    }
+
+    .card {
+        max-width: 90vw;
+    }
+
+    .navigation {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        gap: var(--spacing-sm);
+    }
+
+    .nav-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .social-icons {
+        gap: var(--spacing-md);
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    :root {
+        --card-padding: 1.5rem;
+        --card-min-width: 90vw;
+        --font-size-name: 1.35rem;
+        --font-size-bio: 0.9rem;
+        --profile-size: 90px;
+    }
+
+    .card {
+        max-width: 95vw;
+    }
+
+    .bio {
+        max-width: 100%;
+    }
+}
+
+/* ===== Focus Styles for Accessibility ===== */
+.nav-button:focus,
+.social-link:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* ===== Print Styles ===== */
+@media print {
+    #particles {
+        display: none;
+    }
+
+    body::before {
+        display: none;
+    }
+
+    .card {
+        background: white;
+        backdrop-filter: none;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
